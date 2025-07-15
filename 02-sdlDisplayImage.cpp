@@ -27,21 +27,21 @@ bool init() {
     bool success = true;
 
     // Initialize SDL
-    if ( !SDL_Init( SDL_INIT_VIDEO )) {
-        SDL_Log( "SDL_Init failed: %s\n", SDL_GetError( ));
+    if (!SDL_Init(SDL_INIT_VIDEO)) {
+        SDL_Log("SDL_Init failed: %s\n", SDL_GetError());
         success = false;
     }
     else {
         // Create window
-        gWindow = SDL_CreateWindow( "SDL Tutorial", SCREEN_WIDTH, SCREEN_HEIGHT,0 );
+        gWindow = SDL_CreateWindow("SDL Tutorial", SCREEN_WIDTH, SCREEN_HEIGHT,0);
 
-        if ( gWindow == NULL ) {
-            SDL_Log( "SDL_CreateWindow failed: %s\n", SDL_GetError( ));
+        if (gWindow == NULL) {
+            SDL_Log("SDL_CreateWindow failed: %s\n", SDL_GetError());
             success = false;
         }
         else {
             // Get window surface
-            gSurface = SDL_GetWindowSurface( gWindow );
+            gSurface = SDL_GetWindowSurface(gWindow);
         }
     }
 
@@ -52,9 +52,9 @@ bool loadMedia() {
     bool success = true;
 
     // Load splash image
-    gHelloWorld = SDL_LoadBMP( "images/hello_world.bmp" );
-    if ( !gHelloWorld ) {
-        SDL_Log( "SDL_LoadBMP failed: %s\n", SDL_GetError( ));
+    gHelloWorld = SDL_LoadBMP("images/hello_world.bmp");
+    if (!gHelloWorld) {
+        SDL_Log("SDL_LoadBMP failed: %s\n", SDL_GetError());
     }
 
     return success;
@@ -62,33 +62,33 @@ bool loadMedia() {
 
 void close() {
     // Deallocate surface
-    SDL_DestroySurface( gHelloWorld );
+    SDL_DestroySurface(gHelloWorld);
     gHelloWorld = NULL;
 
     // Destroy window
-    SDL_DestroyWindow( gWindow );
+    SDL_DestroyWindow(gWindow);
     gWindow = NULL;
 
     // Quit SDL subsystems
     SDL_Quit();
 }
 
-int main( int argc, char *argv[] ) {
+int main(int argc, char *argv[]) {
     // Start SDL and create the window
-    if ( !init() ) {
-        SDL_Log( "SDL_Init failed: %s\n", SDL_GetError( ));
+    if (!init()) {
+        SDL_Log("SDL_Init failed: %s\n", SDL_GetError());
     }
     else {
         // Load the media
-        if ( !loadMedia() ) {
-            SDL_Log( "Failed to load media: %s\n", SDL_GetError( ));
+        if (!loadMedia()) {
+            SDL_Log("Failed to load media: %s\n", SDL_GetError());
         }
         else {
             // Apply the image
-            SDL_BlitSurface( gHelloWorld, NULL, gSurface, NULL );
+            SDL_BlitSurface(gHelloWorld, NULL, gSurface, NULL);
 
             // Update surface
-            SDL_UpdateWindowSurface( gWindow );
+            SDL_UpdateWindowSurface(gWindow);
 
             // Temp way to fix window visibility
             SDL_Event e; bool quit = false; while( quit == false ){ while( SDL_PollEvent( &e ) ){ if( e.type == SDL_EVENT_QUIT ) quit = true; } }

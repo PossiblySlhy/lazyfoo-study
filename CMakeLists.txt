@@ -10,6 +10,6 @@ pkg_check_modules(SDL3 REQUIRED sdl3)
 include_directories(${SDL3_INCLUDE_DIRS})
 link_directories(${SDL3_LIBRARY_DIRS})
 
-add_executable(lazyfooSDL 03-sdlEvents.cpp)
+add_executable(lazyfooSDL 04-sdlKeyPress.cpp)
 
 target_link_libraries(lazyfooSDL ${SDL3_LIBRARIES})
